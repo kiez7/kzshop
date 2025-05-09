@@ -1,0 +1,295 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Game KZ SHOP</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(90deg, #171a21, #2a475e);
+            color: #c7d5e0;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .social-links {
+            margin-top: 15px;
+        }
+        .social-links a {
+            color: #66c0f4;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+        .social-links a:hover {
+            color: #f39c12;
+        }
+        .filters {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .filters button {
+            padding: 12px 20px;
+            font-size: 1em;
+            background-color: #2a475e;
+            color: #c7d5e0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .filters button:hover {
+            background-color: #f39c12;
+            transform: scale(1.05);
+        }
+        .filters button.active {
+            background-color: #f39c12;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-button {
+            padding: 12px 20px;
+            font-size: 1em;
+            background-color: #2a475e;
+            color: #c7d5e0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .dropdown-button:hover {
+            background-color: #f39c12;
+            transform: scale(1.05);
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #2c2c2c;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 10;
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content button {
+            width: 100%;
+            text-align: left;
+            padding: 12px 16px;
+            background: none;
+            color: #c7d5e0;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        .dropdown-content button:hover {
+            background-color: #f39c12;
+        }
+        .game-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .game-card {
+            background-color: #2c2c2c;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+        .game-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 2px solid #f39c12;
+        }
+        .game-card .content {
+            padding: 15px;
+            text-align: center;
+        }
+        .game-card h3 {
+            margin: 10px 0;
+            font-size: 1.4em;
+            color: #66c0f4;
+        }
+        .game-card .price {
+            color: #f39c12;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
+        @media (max-width: 600px) {
+            .game-list {
+                grid-template-columns: 1fr;
+            }
+            .filters button, .dropdown-button {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+            .dropdown-content {
+                min-width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>List Game KZ SHOP</h1>
+        <div class="social-links">
+            <a href="https://facebook.com/yourpage" target="_blank">Facebook</a>
+            <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="filters">
+            <button onclick="filterGames('all')" class="active">Tất cả</button>
+            <button onclick="filterGames('hot')">Game Hot</button>
+            <button onclick="filterGames('Hành động')">Hành động</button>
+            <button onclick="filterGames('Nhập vai')">Nhập vai</button>
+            <button onclick="filterGames('Chiến thuật')">Chiến thuật</button>
+            <button onclick="filterGames('Thể thao')">Thể thao</button>
+            <div class="dropdown">
+                <button class="dropdown-button">Thể loại khác ▼</button>
+                <div class="dropdown-content">
+                    <button onclick="filterGames('Phiêu lưu')">Phiêu lưu</button>
+                    <button onclick="filterGames('Mô phỏng')">Mô phỏng</button>
+                    <button onclick="filterGames('Kinh dị')">Kinh dị</button>
+                    <button onclick="filterGames('Đua xe')">Đua xe</button>
+                    <button onclick="filterGames('Giải đố')">Giải đố</button>
+                    <button onclick="filterGames('Sinh tồn')">Sinh tồn</button>
+                    <button onclick="filterGames('Game anime')">Game anime</button>
+                </div>
+            </div>
+        </div>
+        <div class="game-list" id="gameList"></div>
+    </div>
+    <script src="games.js"></script>
+    <script>
+        function displayGames(games) {
+            const gameList = document.getElementById('gameList');
+            gameList.innerHTML = '';
+            games.forEach(game => {
+                const card = document.createElement('div');
+                card.className = 'game-card';
+                card.innerHTML = `
+                    <img src="${game.image}" alt="${game.name}">
+                    <div class="content">
+                        <h3>${game.name}</h3>
+                        <p class="price">${game.price} VNĐ</p>
+                    </div>
+                `;
+                gameList.appendChild(card);
+            });
+        }
+
+        function filterGames(criteria) {
+            let filteredGames = games;
+            if (criteria === 'hot') {
+                filteredGames = games.filter(game => game.isHot);
+            } else if (criteria !== 'all') {
+                filteredGames = games.filter(game => game.genres.includes(criteria));
+            }
+            displayGames(filteredGames);
+            updateActiveButton(criteria);
+        }
+
+        function updateActiveButton(criteria) {
+            document.querySelectorAll('.filters button').forEach(button => {
+                button.classList.remove('active');
+                if (button.textContent === criteria || 
+                    (criteria === 'hot' && button.textContent === 'Game Hot') || 
+                    (criteria === 'all' && button.textContent === 'Tất cả') ||
+                    (button.parentElement.className === 'dropdown-content' && button.textContent === criteria)) {
+                    button.classList.add('active');
+                }
+            });
+        }
+
+        displayGames(games);
+
+        // Đóng dropdown khi bấm ra ngoài
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.dropdown');
+            if (!dropdown.contains(event.target)) {
+                dropdown.querySelector('.dropdown-content').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
