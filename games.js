@@ -897,7 +897,7 @@ const games = [
     },
     {
         name: "Cult of the Lamb" ,
-        genres: ["Hành Động","Game CO-OP"],
+        genres: ["Hành Động"],
         price: "39.000",
         image: "images/cultofthelamp.jpg",
         isHot: false
