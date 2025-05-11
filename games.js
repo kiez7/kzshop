@@ -476,14 +476,14 @@ const games = [
         isHot: false
     },
     {
-        name: "Split Fiction",
+        name: "Split Fiction + Mod Online",
         genres: ["Phiêu lưu", "Giải đố","Game CO-OP"],
         price: "49.000",
         image: "images/splitfiction.jpg",
         isHot: true
     },
     {
-        name: "It Takes Two",
+        name: "It Takes Two + Mod Online",
         genres: ["Phiêu lưu", "Giải đố","Game CO-OP"],
         price: "39.000",
         image: "images/itakestwo.jpg",
