@@ -2,7 +2,7 @@ const games = [
     {
         name: "The First Berserker: Khazan",
         genres: ["Hành động", "Nhập vai","Cốt truyện"],
-        price: "59.000",
+        price: "49.000",
         image: "images/thefirstberserkerkhazan.jpg",
         isHot: true
     },
