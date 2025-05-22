@@ -602,7 +602,7 @@ const games = [
         isHot: false
     },
     {
-        name: "Ark Survival Evolved + Mail",
+        name: "Ark Survival Evolved New + Mail",
         genres: ["Hành động", "Phiêu Lưu", "Sinh tồn"],
         price: "49.000",
         image: "images/arkevoled.jpg",
@@ -672,9 +672,9 @@ const games = [
         isHot: false
     },
     {
-        name: "The Forest + Mail Gốc",
+        name: "The Forest New + Mail Gốc",
         genres: ["Sinh tồn","Hành động","Phiêu lưu"],
-        price: "29.000",
+        price: "49.000",
         image: "images/theforest.jpg",
         isHot: false
     },
