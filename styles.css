@@ -782,3 +782,17 @@ header {
     grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
     gap: 20px; 
 }
+.filters.hidden {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out, padding 0.5s ease-in-out, margin 0s.5s ease-in-out;
+}
+.game-list.hidden, .service-list.hidden {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
+}
