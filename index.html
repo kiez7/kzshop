@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Game KZ STORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <a href="/" class="logo-link">
+                <img src="images/kz-store-logo.png" alt="KZ Shop Logo" class="logo" loading="lazy">
+            </a>
+            <button class="nav-button active" data-category="steam">Steam Account</button>
+            <button class="nav-button" data-category="netflix">Netflix Premium</button>
+            <button class="nav-button" data-category="youtube">YouTube Premium</button>
+            <button class="nav-button" data-category="spotify">Spotify Premium</button>  
+        </nav>
+        <header>
+            <div class="header-container">
+                <div class="header-content">
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/ngtrugkiez" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="https://discord.gg/zdTccTP97T" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="filters" id="gameFilters">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm game..." oninput="filterGamesBySearch()">
+                <i class="fas fa-search search-icon"></i> 
+            </div>
+            <div class="filter-buttons">
+                <button onclick="filterGames('all')" class="active" data-filter="all">Tất cả</button>
+                <button onclick="filterGames('accoff')" data-filter="accoff">Account OFFLINE</button>
+                <button onclick="filterGames('acconl')" data-filter="acconl">Account ONLINE</button>
+                <button onclick="filterGames('hot')" data-filter="hot">Game Hot</button>
+                <button onclick="filterGames('Hành động')" data-filter="Hành động">Hành động</button>
+                <button onclick="filterGames('Nhập vai')" data-filter="Nhập vai">Nhập vai</button>
+                <button onclick="filterGames('Chiến thuật')" data-filter="Chiến thuật">Chiến thuật</button>
+                <button onclick="filterGames('Thể thao')" data-filter="Thể thao">Thể thao</button>
+                <div class="dropdown">
+                    <button class="dropdown-button">Thể loại khác <i class="fas fa-caret-down"></i></button>
+                    <div class="dropdown-content">
+                        <button onclick="filterGames('Phiêu lưu')" data-filter="Phiêu lưu">Phiêu lưu</button>
+                        <button onclick="filterGames('Cốt truyện')" data-filter="Cốt truyện">Cốt truyện</button>
+                        <button onclick="filterGames('Mô phỏng')" data-filter="Mô phỏng">Mô phỏng</button>
+                        <button onclick="filterGames('Kinh dị')" data-filter="Kinh dị">Kinh dị</button>
+                        <button onclick="filterGames('Bắn súng')" data-filter="Bắn súng">Bắn súng</button>
+                        <button onclick="filterGames('Đua xe')" data-filter="Đua xe">Đua xe</button>
+                        <button onclick="filterGames('Giải đố')" data-filter="Giải đố">Giải đố</button>
+                        <button onclick="filterGames('Sinh tồn')" data-filter="Sinh tồn">Sinh tồn</button>
+                        <button onclick="filterGames('Game anime')" data-filter="Game anime">Game anime</button>
+                        <button onclick="filterGames('Game CO-OP')" data-filter="Game CO-OP">Game CO-OP</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="price-filter">
+                <label>
+                    <input type="checkbox" id="priceFilterToggle" onchange="togglePriceFilter()"> Áp dụng lọc giá
+                </label>
+                <div id="priceFilterControls" style="display: none;">
+                    <label for="minPriceRange">Giá tối thiểu:</label>
+                    <input type="range" id="minPriceRange" min="10000" max="200000" value="10000" step="10000" oninput="updatePriceRange()">
+                    <span id="minPriceValue">10,000 VNĐ</span>
+                    <label for="maxPriceRange">Giá tối đa:</label>
+                    <input type="range" id="maxPriceRange" min="10000" max="200000" value="200000" step="10000" oninput="updatePriceRange()">
+                    <span id="maxPriceValue">200,000 VNĐ</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-list" id="gameList"></div>
+        <div class="service-list hidden" id="netflixList"></div>
+        <div class="service-list hidden" id="youtubeList"></div>
+        <div class="service-list hidden" id="spotifyList"></div>
+
+        <div class="updating-message">ĐANG CẬP NHẬT...</div>
+    </div>
+
+    <script src="games.js"></script>
+    <script src="netflix.js"></script>
+    <script src="youtube.js"></script>
+    <script src="spotify.js"></script>
+    <script>
+        let currentCategory = 'steam'; 
+
+
+        function filterGamesBySearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const activeFilterButton = document.querySelector('.filters button.active');
+            let criteria = 'all';
+            if (activeFilterButton) {
+                if (activeFilterButton.textContent === 'Game Hot') {
+                    criteria = 'hot';
+                } else if (activeFilterButton.textContent !== 'Tất cả') {
+                    criteria = activeFilterButton.textContent;
+                }
+            }
+            filterGames(criteria, searchTerm);
+        }
+
+        function filterGames(criteria, searchTerm = '') {
+            let filteredGames = games;
+
+
+            if (criteria === 'hot') {
+                filteredGames = filteredGames.filter(game => game.isHot);
+            } else if (criteria !== 'all') {
+                filteredGames = filteredGames.filter(game => game.genres && game.genres.includes(criteria));
+            }
+
+            if (searchTerm) {
+                filteredGames = filteredGames.filter(game => game.name.toLowerCase().includes(searchTerm));
+            }
+
+            const priceFilterToggle = document.getElementById('priceFilterToggle').checked;
+            if (priceFilterToggle) {
+                const minPrice = parseInt(document.getElementById('minPriceRange').value);
+                const maxPrice = parseInt(document.getElementById('maxPriceRange').value);
+                filteredGames = filteredGames.filter(game => {
+                    const price = parsePrice(game.price);
+                    return price >= minPrice && price <= maxPrice;
+                });
+            }
+            displayGames(filteredGames, 'gameList');
+            updateActiveButton(criteria);
+        }
+
+        function displayGames(items, listId) {
+            const listElement = document.getElementById(listId);
+            listElement.innerHTML = '';
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = listId === 'gameList' ? 'game-card' : 'service-card';
+                let genresHtml = '';
+                if (item.genres && item.genres.length > 0) {
+                    genresHtml = `<div class="genres">${item.genres.join(', ')}</div>`;
+                }
+                let descriptionHtml = '';
+                if (item.description) {
+                    descriptionHtml = `<p class="description">${item.description}</p>`;
+                }
+                let shortDescHtml = ''; 
+                if (item.shortDescription) {
+                    shortDescHtml = `<p class="short-description">${item.shortDescription}</p>`;
+                }
+
+                card.innerHTML = `
+                    <img 
+                        src="${item.image}" 
+                        alt="${item.name}" 
+                        width="280" 
+                        height="180" 
+                        loading="lazy">
+                    <div class="content">
+                        <h3>${item.name}</h3>
+                        ${shortDescHtml} <!-- Display short description -->
+                        ${descriptionHtml}
+                        <p class="price">${item.price} VNĐ</p>
+                    </div>
+                    ${genresHtml}
+                `;
+                listElement.appendChild(card);
+            });
+        }
+
+        function parsePrice(priceStr) {
+            try {
+                if (!priceStr || typeof priceStr !== 'string') {
+                    
+                    return 0;
+                }
+                const cleanedPrice = priceStr.replace(/\./g, '');
+                const price = parseInt(cleanedPrice, 10);
+                if (isNaN(price)) {
+                    
+                    return 0;
+                }
+                return price;
+            } catch (e) {
+                console.error(`Error parsing price: ${priceStr}`, e);
+                return 0;
+            }
+        }
+
+        function updateActiveButton(criteria) {
+            
+            document.querySelectorAll('.filters .filter-buttons button').forEach(button => {
+                button.classList.remove('active');
+            });
+           
+            document.querySelectorAll('.dropdown-content button').forEach(button => {
+                button.classList.remove('active');
+            });
+           
+            const activeButton = document.querySelector(`.filters .filter-buttons button[data-filter="${criteria}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            } else {
+                
+                const dropdownButton = document.querySelector(`.dropdown-content button[data-filter="${criteria}"]`);
+                if (dropdownButton) {
+                    dropdownButton.classList.add('active');
+                }
+            }
+        }
+
+        function showPopup() {
+            const popupOverlay = document.getElementById('popupOverlay');
+            const popupContent = popupOverlay.querySelector('.popup-content');
+            popupOverlay.style.display = 'flex';
+            popupContent.classList.remove('hide');
+            popupContent.classList.add('show');
+            document.getElementById('popupMessage').innerHTML = 'Web hiện tại vẫn chưa tối ưu cho mobile nên sử dụng máy tính để xem<br>Cần giá game - mua hãy IB facebook hoặc discord';
+        }
+
+        function closePopup() {
+            const popupOverlay = document.getElementById('popupOverlay');
+            const popupContent = popupOverlay.querySelector('.popup-content');
+            popupContent.classList.remove('show');
+            popupContent.classList.add('hide');
+            popupContent.addEventListener('animationend', function handler() {
+                popupOverlay.style.display = 'none';
+                popupContent.classList.remove('hide');
+                popupContent.removeEventListener('animationend', handler);
+            }, { once: true });
+        }
+
+       
+        window.addEventListener('load', showPopup);
+
+        function togglePriceFilter() {
+            const priceFilterControls = document.getElementById('priceFilterControls');
+            const priceFilterToggle = document.getElementById('priceFilterToggle').checked;
+            priceFilterControls.style.display = priceFilterToggle ? 'block' : 'none';
+            const activeFilterButton = document.querySelector('.filters button.active');
+            let criteria = 'all';
+            if (activeFilterButton) {
+                if (activeFilterButton.textContent === 'Game Hot') {
+                    criteria = 'hot';
+                } else if (activeFilterButton.textContent !== 'Tất cả') {
+                    criteria = activeFilterButton.textContent;
+                }
+            }
+            filterGames(criteria);
+        }
+
+        function updatePriceRange() {
+            const minPriceInput = document.getElementById('minPriceRange');
+            const maxPriceInput = document.getElementById('maxPriceRange');
+            let minPrice = parseInt(minPriceInput.value);
+            let maxPrice = parseInt(maxPriceInput.value);
+
+            if (minPrice > maxPrice) {
+                
+                [minPrice, maxPrice] = [maxPrice, minPrice];
+                minPriceInput.value = minPrice;
+                maxPriceInput.value = maxPrice;
+            }
+
+            document.getElementById('minPriceValue').textContent = `${minPrice.toLocaleString('vi-VN')} VNĐ`;
+            document.getElementById('maxPriceValue').textContent = `${maxPrice.toLocaleString('vi-VN')} VNĐ`;
+            
+            const activeFilterButton = document.querySelector('.filters button.active');
+            let criteria = 'all';
+            if (activeFilterButton) {
+                if (activeFilterButton.textContent === 'Game Hot') {
+                    criteria = 'hot';
+                } else if (activeFilterButton.textContent !== 'Tất cả') {
+                    criteria = activeFilterButton.textContent;
+                }
+            }
+            filterGames(criteria);
+        }
+
+      
+        filterGames('all');
+
+        document.querySelector('.dropdown-button').addEventListener('click', function(event) {
+            event.stopPropagation();
+            const dropdown = this.closest('.dropdown');
+            dropdown.classList.toggle('active'); 
+        });
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.dropdown');
+          
+            if (dropdown && !dropdown.contains(event.target)) {
+                dropdown.classList.remove('active'); 
+            }
+        });
+        document.querySelectorAll('.dropdown-content button').forEach(button => {
+            button.addEventListener('click', () => {
+                const criteria = button.textContent;
+                filterGames(criteria);
+                
+                document.querySelector('.dropdown').classList.remove('active');
+            });
+        });
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        
+        window.addEventListener('scroll', () => {
+            const scrollToTopButton = document.getElementById('scrollToTop');
+            if (window.scrollY > 300) {
+                scrollToTopButton.classList.add('show');
+            } else {
+                scrollToTopButton.classList.remove('show');
+            }
+        });
+
+       
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                currentCategory = this.dataset.category;
+
+                const gameFilters = document.getElementById('gameFilters');
+                const gameList = document.getElementById('gameList');
+                const netflixList = document.getElementById('netflixList');
+                const youtubeList = document.getElementById('youtubeList');
+                const spotifyList = document.getElementById('spotifyList');
+                const updatingMessage = document.querySelector('.updating-message'); 
+                gameList.classList.add('hidden');
+                netflixList.classList.add('hidden');
+                youtubeList.classList.add('hidden');
+                spotifyList.classList.add('hidden');
+                updatingMessage.style.display = 'none'; 
+
+                if (currentCategory === 'steam') {
+                    gameFilters.classList.remove('hidden');
+                    gameList.classList.remove('hidden');
+                    filterGames('all'); 
+                } else if (currentCategory === 'netflix') {
+                    netflixList.classList.remove('hidden');
+                    displayGames(netflixProducts, 'netflixList');
+                } else if (currentCategory === 'youtube') {
+                    youtubeList.classList.remove('hidden');
+                    displayGames(youtubeProducts, 'youtubeList');
+                } else if (currentCategory === 'spotify') {
+                    spotifyList.classList.remove('hidden');
+                    displayGames(spotifyProducts, 'spotifyList');
+                }
+                if (currentCategory !== 'steam' && document.getElementById(`${currentCategory}List`).children.length === 0) {
+                    updatingMessage.style.display = 'flex';
+                }
+            });
+        });
+    </script>
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <span class="popup-close" onclick="closePopup()">×</span>
+            <h2>Thông báo</h2>
+            <p id="popupMessage"></p>
+        </div>
+    </div>
+    <div class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+        ↑
+    </div>
+</body>
+</html>
