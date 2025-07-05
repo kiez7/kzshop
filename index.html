@@ -322,10 +322,11 @@
             }
         });
 
-       
         document.querySelectorAll('.nav-button').forEach(button => {
             button.addEventListener('click', function() {
+                // Xóa lớp 'active' khỏi tất cả các nút điều hướng
                 document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
+                // Thêm lớp 'active' vào nút được click
                 this.classList.add('active');
 
                 currentCategory = this.dataset.category;
@@ -336,16 +337,22 @@
                 const youtubeList = document.getElementById('youtubeList');
                 const spotifyList = document.getElementById('spotifyList');
                 const updatingMessage = document.querySelector('.updating-message'); 
+
+                // Ẩn tất cả các danh sách và thông báo cập nhật trước
                 gameList.classList.add('hidden');
                 netflixList.classList.add('hidden');
                 youtubeList.classList.add('hidden');
                 spotifyList.classList.add('hidden');
                 updatingMessage.style.display = 'none'; 
 
+                // Ẩn bộ lọc mặc định
+                gameFilters.classList.add('hidden');
+
                 if (currentCategory === 'steam') {
+                    // Hiển thị bộ lọc và danh sách game khi chọn Steam
                     gameFilters.classList.remove('hidden');
                     gameList.classList.remove('hidden');
-                    filterGames('all'); 
+                    filterGames('all'); // Lọc lại game khi chuyển về Steam
                 } else if (currentCategory === 'netflix') {
                     netflixList.classList.remove('hidden');
                     displayGames(netflixProducts, 'netflixList');
@@ -356,11 +363,14 @@
                     spotifyList.classList.remove('hidden');
                     displayGames(spotifyProducts, 'spotifyList');
                 }
+
+                // Hiển thị thông báo "ĐANG CẬP NHẬT..." nếu danh mục không có sản phẩm
                 if (currentCategory !== 'steam' && document.getElementById(`${currentCategory}List`).children.length === 0) {
                     updatingMessage.style.display = 'flex';
                 }
             });
         });
+
     </script>
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-content">
