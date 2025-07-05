@@ -1,12 +1,315 @@
 const games = [
-    
+        {
+        "name": "Elden Ring Nightreign Deluxe Edition",
+        "shortDescription": "Phiên bản đặc biệt của Elden Ring với nội dung bổ sung.",
+        "genres": ["Nhập vai", "Hành động", "Phiêu lưu", "Cốt truyện", "Account OFFLINE"],
+        "price": "49.000",
+        "image": "images/eldenring_nightreign.jpg",
+        "isHot": true
+    },
+    {
+        "name": "F1 25",
+        "shortDescription": "Trải nghiệm đường đua F1 chân thực nhất.",
+        "genres": ["Đua xe", "Mô phỏng", "Thể thao", "Account OFFLINE"],
+        "price": "79.000",
+        "image": "images/f125.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Car Dealer Simulator",
+        "shortDescription": "Xây dựng đế chế kinh doanh xe hơi của riêng bạn.",
+        "genres": ["Mô phỏng", "Account OFFLINE"],
+        "price": "39.000",
+        "image": "images/cardealer_simulator.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Contraband Police",
+        "shortDescription": "Nhập vai cảnh sát biên phòng, ngăn chặn buôn lậu, nhập cư trái phép.",
+        "genres": ["Mô phỏng", "Bắn súng", "Account OFFLINE"],
+        "price": "29.000",
+        "image": "images/contrabandpolice.jpg",
+        "isHot": false
+    },
+    {
+        "name": "RoadCraft Rebuild Edition",
+        "shortDescription": "Xây dựng và tùy chỉnh những con đường trong thế giới mở.",
+        "genres": ["Mô phỏng", "Chiến thuật", "Account OFFLINE"],
+        "price": "39.000",
+        "image": "images/roadcraft_rebuild.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Stellar Blade Deluxe Edition",
+        "shortDescription": "Hành động khoa học viễn tưởng với đồ họa tuyệt đẹp.",
+        "genres": ["Hành động", "Phiêu lưu", "Cốt truyện", "Account OFFLINE"],
+        "price": "59.000",
+        "image": "images/stellar_blade.jpg",
+        "isHot": true
+    },
+    {
+        "name": "Lies of P + DLC Overture",
+        "shortDescription": "Phiên bản đầy đủ của Lies of P kèm DLC mở rộng.",
+        "genres": ["Hành động", "Nhập vai", "Cốt truyện", "Account OFFLINE"],
+        "price": "49.000",
+        "image": "images/liesofp_dlc.jpg",
+        "isHot": true
+    },
+    {
+        "name": "The Alters: Deluxe Edition",
+        "shortDescription": "Phiêu lưu sinh tồn với những lựa chọn đa chiều.",
+        "genres": ["Phiêu lưu", "Mô phỏng", "Cốt truyện", "Account OFFLINE"],
+        "price": "39.000",
+        "image": "images/the_alters.jpg",
+        "isHot": false
+    },
+    {
+        "name": "The Precinct",
+        "shortDescription": "Trở thành cảnh sát và duy trì trật tự thành phố.",
+        "genres": ["Hành động", "Mô phỏng", "Account OFFLINE"],
+        "price": "29.000",
+        "image": "images/the_precinct.jpg",
+        "isHot": false
+    },
+    {
+        "name": "DOOM: The Dark Ages Premium Edition",
+        "shortDescription": "Phiên bản cao cấp của tựa game bắn súng DOOM.",
+        "genres": ["Hành động", "Bắn súng", "Account OFFLINE"],
+        "price": "59.000",
+        "image": "images/doom_darkages.jpg",
+        "isHot": true
+    },
+    {
+        "name": "Need for Speed Unbound",
+        "shortDescription": "Đua xe đường phố đầy phong cách và tốc độ.",
+        "genres": ["Đua xe", "Hành động", "Account OFFLINE"],
+        "price": "49.000",
+        "image": "images/nfs_unbound.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Age of Empires II Definitive Edition",
+        "shortDescription": "Phiên bản nâng cấp của game chiến thuật kinh điển.",
+        "genres": ["Chiến thuật", "Mô phỏng", "Account OFFLINE"],
+        "price": "39.000",
+        "image": "images/aoe2de.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Age of Empires IV Full DLC",
+        "shortDescription": "Game chiến thuật thời gian thực với đầy đủ DLC.",
+        "genres": ["Chiến thuật", "Mô phỏng", "Account OFFLINE"],
+        "price": "49.000",
+        "image": "images/aoe4.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Only Up",
+        "shortDescription": "Thử thách leo trèo đầy kịch tính.",
+        "genres": ["Phiêu lưu", "Giải đố", "Account OFFLINE"],
+        "price": "19.000",
+        "image": "images/onlyup.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Life is Strange: True Colors Ultimate Edition Full DLC",
+        "shortDescription": "Phiêu lưu kể chuyện với lựa chọn và hậu quả.",
+        "genres": ["Phiêu lưu", "Cốt truyện", "Account OFFLINE"],
+        "price": "49.000",
+        "image": "images/lifestrangetruecolors.jpg",
+        "isHot": false
+    },
+    {
+        "name": "DEVOUR",
+        "shortDescription": "Game kinh dị sinh tồn co-op.",
+        "genres": ["Kinh dị", "Sinh tồn", "Game CO-OP", "Account OFFLINE"],
+        "price": "29.000",
+        "image": "images/devour.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Sherlock Holmes Chapter One",
+        "shortDescription": "Giải mã bí ẩn cùng Sherlock Holmes thời trẻ.",
+        "genres": ["Phiêu lưu", "Giải đố", "Cốt truyện", "Account OFFLINE"],
+        "price": "39.000",
+        "image": "images/sherlockholmeschapterone.jpg",
+        "isHot": false
+    },
+    {
+        "name": "My Dream Setup",
+        "shortDescription": "Xây dựng góc làm việc trong mơ.",
+        "genres": ["Mô phỏng", "Account OFFLINE"],
+        "price": "19.000",
+        "image": "images/mydreamsetup.jpg",
+        "isHot": false
+    },
+    {
+        "name": "PixARK",
+        "shortDescription": "Sinh tồn thế giới mở phong cách voxel.",
+        "genres": ["Sinh tồn", "Phiêu lưu", "Mô phỏng", "Account OFFLINE"],
+        "price": "29.000",
+        "image": "images/pixark.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Quantum Break",
+        "shortDescription": "Hành động với khả năng thao túng thời gian.",
+        "genres": ["Hành động", "Phiêu lưu", "Cốt truyện", "Account OFFLINE"],
+        "price": "29.000",
+        "image": "images/quantumbreak.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Empires of the Undergrowth",
+        "shortDescription": "Xây dựng đế chế kiến dưới lòng đất.",
+        "genres": ["Chiến thuật", "Mô phỏng", "Account OFFLINE"],
+        "price": "29.000",
+        "image": "images/empiresoftheundergrowth.jpg",
+        "isHot": false
+    },
+    {
+        "name": "American Truck Simulator",
+        "shortDescription": "Mô phỏng lái xe tải trên khắp nước Mỹ.",
+        "genres": ["Mô phỏng", "Đua xe", "Account OFFLINE"],
+        "price": "29.000",
+        "image": "images/americantrucksimulator.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Geometry Dash",
+        "shortDescription": "Game nhịp điệu thử thách kỹ năng.",
+        "genres": ["Giải đố", "Hành động", "Account OFFLINE"],
+        "price": "19.000",
+        "image": "images/geometrydash.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Super Bunny Man",
+        "shortDescription": "Phiêu lưu giải đố co-op vui nhộn.",
+        "genres": ["Phiêu lưu", "Giải đố", "Game CO-OP", "Account OFFLINE"],
+        "price": "19.000",
+        "image": "images/superbunnyman.jpg",
+        "isHot": false
+    },
+    {
+        "name": "BERSERK and the Band of the Hawk",
+        "shortDescription": "Hành động chặt chém dựa trên manga Berserk.",
+        "genres": ["Hành động", "Game anime", "Account OFFLINE"],
+        "price": "39.000",
+        "image": "images/berserk.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Totally Accurate Battle Simulator",
+        "shortDescription": "Mô phỏng trận chiến hài hước.",
+        "genres": ["Mô phỏng", "Chiến thuật", "Account OFFLINE"],
+        "price": "29.000",
+        "image": "images/tabs.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Escape the Backrooms",
+        "shortDescription": "Kinh dị sinh tồn trong mê cung Backrooms.",
+        "genres": ["Kinh dị", "Sinh tồn", "Account OFFLINE"],
+        "price": "29.000",
+        "image": "images/escapethebackrooms.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Another Crab’s Treasure",
+        "shortDescription": "Phiêu lưu hành động dưới đáy biển.",
+        "genres": ["Phiêu lưu", "Hành động", "Account OFFLINE"],
+        "price": "29.000",
+        "image": "images/anothercrabstreasure.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Sherlock Holmes The Awakened",
+        "shortDescription": "Giải mã bí ẩn kinh dị cùng Sherlock Holmes.",
+        "genres": ["Phiêu lưu", "Giải đố", "Kinh dị", "Cốt truyện", "Account OFFLINE"],
+        "price": "49.000",
+        "image": "images/sherlockholmestheawakened.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Valheim",
+        "shortDescription": "Sinh tồn thế giới mở lấy cảm hứng Viking.",
+        "genres": ["Sinh tồn", "Phiêu lưu", "Account OFFLINE"],
+        "price": "29.000",
+        "image": "images/valheim.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Ghostrunner 2 Brutal Edition",
+        "shortDescription": "Hành động cyberpunk tốc độ cao.",
+        "genres": ["Hành động", "Phiêu lưu", "Account OFFLINE"],
+        "price": "49.000",
+        "image": "images/ghostrunner2.jpg",
+        "isHot": false
+    },
+    {
+        "name": "V Rising",
+        "shortDescription": "Sinh tồn nhập vai ma cà rồng.",
+        "genres": ["Sinh tồn", "Nhập vai", "Hành động", "Account OFFLINE"],
+        "price": "39.000",
+        "image": "images/vrising.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Red Dead Redemption 1",
+        "shortDescription": "Cao bồi miền Tây hoang dã.",
+        "genres": ["Hành động", "Phiêu lưu", "Nhập vai", "Cốt truyện", "Account OFFLINE"],
+        "price": "39.000",
+        "image": "images/reddeadredemption1.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Death Stranding Director's Cut",
+        "shortDescription": "Phiêu lưu hậu tận thế độc đáo.",
+        "genres": ["Phiêu lưu", "Cốt truyện", "Account OFFLINE"],
+        "price": "39.000",
+        "image": "images/deathstranding.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Terraria",
+        "shortDescription": "Phiêu lưu xây dựng thế giới pixel.",
+        "genres": ["Phiêu lưu", "Mô phỏng", "Sinh tồn", "Account OFFLINE"],
+        "price": "19.000",
+        "image": "images/terraria.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Terraria + Mail",
+        "shortDescription": "Phiêu lưu xây dựng thế giới pixel.",
+        "genres": ["Phiêu lưu", "Mô phỏng", "Sinh tồn", "Account ONLINE"],
+        "price": "49.000",
+        "image": "images/terraria.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Nobody – The Turnaround",
+        "shortDescription": "Mô phỏng cuộc sống chân thực.",
+        "genres": ["Mô phỏng", "Cốt truyện", "Account OFFLINE"],
+        "price": "19.000",
+        "image": "images/nobodytheturnaround.jpg",
+        "isHot": false
+    },
+    {
+        "name": "Yakuza 0",
+        "shortDescription": "Hành động nhập vai thế giới ngầm Nhật Bản.",
+        "genres": ["Hành động", "Nhập vai", "Cốt truyện", "Account OFFLINE"],
+        "price": "39.000",
+        "image": "images/yakuza0.jpg",
+        "isHot": false
+    },
     {
         name: "The Elder Scrolls IV: Oblivion Remastered",
-        shortDescription: "Thế giới mở rộng lớn, tự do khám phá.", // Added short description
+        shortDescription: "Thế giới mở rộng lớn, tự do khám phá.", 
         genres: ["Nhập Vai","Cốt truyện", "Account OFFLINE"],
         price: "49.000",
         image: "images/theelderscrollsiv.jpg",
-        isHot: true
+        isHot: false
     },
     {
         name: "Clair Obscur Expedition 33 Deluxe Edition",
@@ -29,6 +332,14 @@ const games = [
         shortDescription: "Hành trình phiêu lưu của Tôn Ngộ Không.",
         genres: ["Hành động", "Nhập vai", "Phiêu lưu","Cốt truyện", "Account OFFLINE"],
         price: "49.000",
+        image: "images/blackmythwukong.jpg",
+        isHot: true
+    },
+    {
+        name: "Black Myth: Wukong + Mail",
+        shortDescription: "Hành trình phiêu lưu của Tôn Ngộ Không.",
+        genres: ["Hành động", "Nhập vai", "Phiêu lưu","Cốt truyện", "Account ONLINE"],
+        price: "399.000",
         image: "images/blackmythwukong.jpg",
         isHot: true
     },
@@ -62,7 +373,7 @@ const games = [
         genres: ["Hành động", "Phiêu lưu","Cốt truyện", "Account OFFLINE"],
         price: "79.000",
         image: "images/3spiderman.jpg",
-        isHot: false
+        isHot: true
     },
     {
         name: "Grand Theft Auto V (GTA V)",
@@ -947,10 +1258,18 @@ const games = [
         isHot: false
     },
     {
-        name: "R.E.P.O + Mod Online",
+        name: "R.E.P.O",
+        shortDescription: "Hành động kinh dị co-op.",
+        genres: ["Hành Động","Game CO-OP","Kinh Dị", "Account OFFLINE"],
+        price: "29.000",
+        image: "images/repo.jpg",
+        isHot: true
+    },
+    {
+        name: "R.E.P.O + MAIL",
         shortDescription: "Hành động kinh dị co-op.",
         genres: ["Hành Động","Game CO-OP","Kinh Dị", "Account ONLINE"],
-        price: "29.000",
+        price: "139.000",
         image: "images/repo.jpg",
         isHot: true
     },
@@ -966,7 +1285,7 @@ const games = [
         name: "Resident Evil 8 Village" ,
         shortDescription: "Kinh dị sinh tồn tại ngôi làng bí ẩn.",
         genres: ["Hành Động","Kinh Dị","Cốt truyện", "Account OFFLINE"],
-        price: "39.000",
+        price: "49.000",
         image: "images/re8.jpg",
         isHot: false
     },
@@ -1066,6 +1385,5 @@ const games = [
         price: "49.000",
         image: "images/codmwr.jpg",
         isHot: false
-    },
-
+    }
 ];
