@@ -11,7 +11,7 @@ const games = [
         "name": "F1 25",
         "shortDescription": "Trải nghiệm đường đua F1 chân thực nhất.",
         "genres": ["Đua xe", "Mô phỏng", "Thể thao", "Account OFFLINE"],
-        "price": "79.000",
+        "price": "89.000",
         "image": "images/f125.jpg",
         "isHot": false
     },
