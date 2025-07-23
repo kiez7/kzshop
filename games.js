@@ -43,7 +43,7 @@ const games = [
         "name": "RoadCraft Rebuild Edition",
         "shortDescription": "Xây dựng và tùy chỉnh những con đường trong thế giới mở.",
         "genres": ["Mô phỏng", "Chiến thuật", "Account OFFLINE"],
-        "price": "39.000",
+        "price": "29.000",
         "image": "images/roadcraft_rebuild.jpg",
         "isHot": false
     },
