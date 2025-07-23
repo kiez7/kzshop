@@ -16,7 +16,7 @@ const games = [
         "isHot": true
     },
     {
-        "name": "F1 25",
+        "name": "F1 25 Iconic Edition",
         "shortDescription": "Trải nghiệm đường đua F1 chân thực nhất.",
         "genres": ["Đua xe", "Mô phỏng", "Thể thao", "Account OFFLINE"],
         "price": "89.000",
