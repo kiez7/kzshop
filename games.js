@@ -3,7 +3,7 @@ const games = [
         "name": "Wuchang: Fallen Feathers",
         "shortDescription": "Game hành động nhập vai kiểu Souls, lấy bối cảnh Trung Hoa huyền bí cuối triều Minh.ng.",
         "genres": ["Nhập vai", "Hành động", "Phiêu lưu", "Cốt truyện", "Account OFFLINE"],
-        "price": "69.000",
+        "price": "59.000",
         "image": "images/wuchang.jpg",
         "isHot": true
     },
