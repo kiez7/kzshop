@@ -3,7 +3,7 @@ const games = [
         "name": "Wuchang: Fallen Feathers",
         "shortDescription": "Game hành động nhập vai kiểu Souls, lấy bối cảnh Trung Hoa huyền bí cuối triều Minh.ng.",
         "genres": ["Nhập vai", "Hành động", "Phiêu lưu", "Cốt truyện", "Account OFFLINE"],
-        "price": "59.000",
+        "price": "49.000",
         "image": "images/wuchang.jpg",
         "isHot": true
     },
@@ -19,7 +19,7 @@ const games = [
         "name": "F1 25 Iconic Edition",
         "shortDescription": "Trải nghiệm đường đua F1 chân thực nhất.",
         "genres": ["Đua xe", "Mô phỏng", "Thể thao", "Account OFFLINE"],
-        "price": "89.000",
+        "price": "59.000",
         "image": "images/f125.jpg",
         "isHot": false
     },
@@ -83,7 +83,7 @@ const games = [
         "name": "DOOM: The Dark Ages Premium Edition",
         "shortDescription": "Phiên bản cao cấp của tựa game bắn súng DOOM.",
         "genres": ["Hành động", "Bắn súng", "Account OFFLINE"],
-        "price": "59.000",
+        "price": "49.000",
         "image": "images/doom_darkages.jpg",
         "isHot": true
     },
@@ -331,7 +331,7 @@ const games = [
         name: "The First Berserker: Khazan",
         shortDescription: "Game hành động nhập vai đậm chất sử thi.",
         genres: ["Hành động", "Nhập vai","Cốt truyện", "Account OFFLINE"],
-        price: "59.000",
+        price: "49.000",
         image: "images/thefirstberserkerkhazan.jpg",
         isHot: true
     },
