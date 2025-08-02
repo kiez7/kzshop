@@ -1,6 +1,6 @@
 const games = [
         {
-        "name": "Wuchang: Fallen Feathers",
+        "name": "Wuchang: Fallen Feathers Deluxe",
         "shortDescription": "Game hành động nhập vai kiểu Souls, lấy bối cảnh Trung Hoa huyền bí cuối triều Minh.ng.",
         "genres": ["Nhập vai", "Hành động", "Phiêu lưu", "Cốt truyện", "Account OFFLINE"],
         "price": "49.000",
